@@ -4,7 +4,9 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
 	window = hwnd;
 	input = in;
-
+	ball.setSize(sf::Vector2f(40, 40));
+	ball.setFillColor(sf::Color::Red);
+	ball.setPosition(sf::Vector2f(500, 0));
 	// initialise game objects
 
 }
@@ -17,20 +19,21 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
-
+	ball.setInput(input);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-
+	sf::Vector2u screen = window->getSize();
+	ball.update(dt, screen);
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	window->draw(ball);
 	endDraw();
 }
 
